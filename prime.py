@@ -10,11 +10,11 @@ def betterPrimeFactorization(low=2, high=1000):
             flag = False
             if (j%2==0):
                 flag = True
-                break
-            for k in range (3,np.ceil(checkPrime**0.5), 2):
-                if (j%k==0):
-                    flag = True
-                    break
+            else:
+                for k in range (3,int(np.ceil(checkPrime**0.5)), 2):
+                    if (j%k==0):
+                        flag = True
+                        break
             if not flag and i%checkPrime==0 and checkPrime <= i:
                 while (currentPrime%checkPrime==0):
                     currentPrime/=checkPrime
