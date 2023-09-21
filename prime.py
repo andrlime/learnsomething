@@ -1,13 +1,17 @@
 import timeit
+import numpy as np
 
-def disasterCode():
-    for i in range (2,2500):
+def betterPrimeFactorization(low=2, high=1000):
+    for i in range (low,high):
         uniquePrimes = []
         currentPrime = i
         for j in range (2,i):
             checkPrime = j
             flag = False
-            for k in range (2,checkPrime-1):
+            if (j%2==0):
+                flag = True
+                break
+            for k in range (3,np.ceil(checkPrime**0.5), 2):
                 if (j%k==0):
                     flag = True
                     break
@@ -20,10 +24,10 @@ def disasterCode():
 
 # Benchmark the code
 if __name__ == "__main__":
-    benchmark_code = "disasterCode()"
-    setup_code = "from __main__ import disasterCode"
+    benchmark_code = "betterPrimeFactorization()"
+    setup_code = "from __main__ import betterPrimeFactorization"
 
-    # Measure the execution time of disasterCode function
+    # Measure the execution time of betterPrimeFactorization function
     times = []
     for i in range(0,5):
         times.append(timeit.timeit(benchmark_code, setup=setup_code, number=1))
