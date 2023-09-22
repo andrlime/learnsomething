@@ -1,13 +1,15 @@
 def max_area(height):
     max_area = 0
-    n = len(height)
+    len_height = len(height)
 
-    for i in range(n):
-        for j in range(i + 1, n):
-            h1 = height[i]
-            h2 = height[j]
-            width = j - i
-            current_area = min(h1, h2) * width
-            max_area = max(max_area, current_area)
+    start = 0
+    end = len_height - 1
+    while start < end:
+        current_area = min(height[start], height[end]) * (end - start)
+        max_area = max(current_area, max_area)
+        if height[start] < height[end]:
+            start += 1
+        else:
+            end -= 1
 
     return max_area
